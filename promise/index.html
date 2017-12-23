@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+</head>
+<body>
+    <h1>hi</h1>
+<script>
+
+    function ajax(){
+        return new Promise(function(resolve, reject){
+            var xhr = new XMLHttpRequest();
+            var url = "./data.json";
+
+            xhr.open("GET",url);
+
+            xhr.addEventListener("load",function(){
+                if(xhr.status === 200) {
+                    resolve(xhr.responseText);
+//                    console.log('xhr.responseText : ',xhr.responseText)
+                }
+                else reject("서버에러: "+ xhr.status);
+            },false);
+
+            xhr.addEventListener('error',function () {
+                reject('Ajax 요청실패');
+            },false);
+
+            xhr.send();
+
+        });
+    }
+
+    // then 메서드는 2개의 인자를 받는다. 이룸(onFulfiled),버림(onReject));
+    ajax().then((value)=>{
+        // ajax 요청이 성공하면 onFulfiled 콜백을 실행하여 JOSN문자열을 자바스크립트 객체로 변환 후 반환한다.
+        console.log(value);
+    },()=>{
+        // ajax 요청이 실패하면
+        console.log('실패');
+    });
+</script>
+</body>
+</html>
