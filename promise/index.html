@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>index</title>
+    <title>Promise</title>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 </head>
 <body>
-    <h1>hi</h1>
+    <h1>Promise</h1>
 <script>
 
     function ajax(){
         return new Promise(function(resolve, reject){
             var xhr = new XMLHttpRequest();
-            var url = "./data2.json" || false; // 목업데이터가 있으면 가져오고 없으면 false값을 넘겨 에러발생
+            var url = "./data.json" || false; // 목업데이터가 있으면 가져오고 없으면 false값을 넘겨 에러발생
 
             xhr.open("GET",url);
             xhr.addEventListener("load",function(){
@@ -31,6 +31,7 @@
 
         });
     }
+
 
     // then 메서드는 2개의 인자를 받는다. 이룸(onFulfiled),버림(onReject));
     // catch 메서드는 에러/예외만 처리하고자 할때 사용. 버림(onReject) 인자 하나만 받는다.
@@ -55,10 +56,7 @@
 
 
     var promise2 = Promise.reject('실패');
-    promise2.then(value=>console.log('a'),value=>{
-        console.log(value)
-        return value;
-    });
+    promise2.then(null,value=>console.log('a'));
 
 
     // all(iterable)은 주어진 이터러블 객체의 프라미스가 모두 이루어질 떄 '새 이룸 프라미스를 반환' 하는 메서드
