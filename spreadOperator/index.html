@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Spread Operator</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+</head>
+<body>
+    <h1>Spread Operator</h1>
+<script>
+
+    // es5 이전 방식
+
+    function myFunc(a,b) {
+        return a+b
+    }
+
+    var data = [1,4];
+    var result = myFunc.apply(null,data);
+    // apply를 이용하여 배열 값을 하나하나 꺼낸 후 개별적인 함수 인자로 만들어 호출
+    console.log(result); // 5
+
+    // es6 방식
+
+    let myFunc2 = (a,b) => a+b;
+
+    let data2 = [5,2];
+
+    let result2 = myFunc2(...data2);
+    // ...data를 먼저 5,2로 치환한 다음 myFunc2 함수를 호출
+    // let result2 = myFunc(...data2) -> let result2 myFunc(1,2);
+    console.log(result2); // 7
+
+
+    // spread operator 활용
+
+    let arr1 = [2, 3, 4];
+    let arr2 = [1, ...arr1, 5, 6 ,7];
+    console.log(arr2); // [1,2,3,4,5,6,7]
+
+    let arr3 = [2,3,4];
+    let arr4 = [1];
+    arr4.push(...arr3);
+    console.log(arr4); // [1,2,3,4]
+
+    let array1 = [1];
+    let array2 = [2];
+    let array3 = [...array1, ...array2, ...[3,4]]; // [1,2,3,4];
+    let array4 = [5];
+
+    let spreadFunc = (a,b,c,d,e) => a+b+c+d+e;
+
+    let spreadResult = spreadFunc(...array3,...array4);
+    console.log(spreadResult);
+
+</script>
+</body>
+</html>
